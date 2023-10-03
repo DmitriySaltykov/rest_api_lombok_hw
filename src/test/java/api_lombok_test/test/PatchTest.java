@@ -1,4 +1,4 @@
-package test;
+package api_lombok_test.test;
 
 import api_lombok_test.models.CreatUserBodyModel;
 import api_lombok_test.models.CreateUserResponseModel;

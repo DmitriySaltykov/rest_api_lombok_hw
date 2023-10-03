@@ -1,4 +1,4 @@
-package test;
+package api_lombok_test.test;
 
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;

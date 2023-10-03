@@ -1,9 +1,9 @@
-package test;
+package api_lombok_test.test;
 
 
 import api_lombok_test.models.LoginBodyModel;
-import api_lombok_test.models.LoginErrorModel;
 import api_lombok_test.models.LoginResponseModel;
+import api_lombok_test.models.LoginErrorModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
