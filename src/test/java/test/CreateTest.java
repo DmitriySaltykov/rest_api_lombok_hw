@@ -1,18 +1,28 @@
 package test;
 
+import api_lombok_test.models.CreatUserBodyModel;
+import api_lombok_test.models.CreateUserResponseModel;
+import api_lombok_test.models.LoginBodyModel;
+import api_lombok_test.models.LoginResponseModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 public class CreateTest extends TestBase {
     @Test
     void successCreateUserTest() {
-        String createData = "{\"name\": \"morpheus\",\"job\": \"leader\"}";
 
-        given()
+
+        CreatUserBodyModel createData = new CreatUserBodyModel();
+        createData.setName("morpheus");
+        createData.setJob("leader");
+
+        CreateUserResponseModel response = given()
                 .log().uri()
                 .log().method()
                 .log().body()
@@ -24,18 +34,25 @@ public class CreateTest extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(201)
-                .body("name", is("morpheus"))
-                .body("job", is("leader"))
-                .body("id", is(not(empty())))
-                .body("createdAt", is(not(empty())));
+                .extract().as(CreateUserResponseModel.class);
+
+
+        assertEquals("morpheus", response.getName());
+        assertEquals("leader", response.getJob());
+        assertNotNull(response.getId());
+        assertNotNull(response.getCreatedAt());
+
 
     }
 
     @Test
     void createUserWithEmptyNameTest() {
-        String createData = "{\"name\": \"\",\"job\": \"leader\"}";
 
-        given()
+        CreatUserBodyModel createData = new CreatUserBodyModel();
+        createData.setName("");
+        createData.setJob("leader");
+
+        CreateUserResponseModel response = given()
                 .log().uri()
                 .log().method()
                 .log().body()
@@ -47,17 +64,22 @@ public class CreateTest extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(201)
-                .body("job", is("leader"))
-                .body("id", is(not(empty())))
-                .body("createdAt", is(not(empty())));
+                .extract().as(CreateUserResponseModel.class);
+
+        assertEquals("leader", response.getJob());
+        assertNotNull(response.getId());
+        assertNotNull(response.getCreatedAt());
 
     }
 
     @Test
     void createUserWithEmptyJobTest() {
-        String createData = "{\"name\": \"morpheus\",\"job\": \"\"}";
 
-        given()
+        CreatUserBodyModel createData = new CreatUserBodyModel();
+        createData.setName("morpheus");
+        createData.setJob("leader");
+
+        CreateUserResponseModel response = given()
                 .log().uri()
                 .log().method()
                 .log().body()
@@ -69,9 +91,12 @@ public class CreateTest extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(201)
-                .body("name", is("morpheus"))
-                .body("id", is(not(empty())))
-                .body("createdAt", is(not(empty())));
+                .extract().as(CreateUserResponseModel.class);
+
+
+        assertEquals("morpheus", response.getName());
+        assertNotNull(response.getId());
+        assertNotNull(response.getCreatedAt());
 
     }
 

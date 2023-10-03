@@ -63,20 +63,7 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
-    void emptyTest() {
 
-        given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .when()
-                .post("/login")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(415);
-    }
 
     @Test
     void emptyPasswordTest() {

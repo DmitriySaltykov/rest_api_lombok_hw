@@ -1,17 +1,22 @@
 package test;
 
+import api_lombok_test.models.CreatUserBodyModel;
+import api_lombok_test.models.CreateUserResponseModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PatchTest extends TestBase {
     @Test
     void UpdateInfoTest() {
-        String authData = "{\"name\": \"morpheus\",\"job\": \"zion resident\"}";
+        CreatUserBodyModel authData = new CreatUserBodyModel();
+        authData.setName("morpheus");
+        authData.setJob("leader");
 
-        given()
+        CreateUserResponseModel response =given()
                 .log().uri()
                 .log().method()
                 .log().body()
@@ -23,8 +28,11 @@ public class PatchTest extends TestBase {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("name", is("morpheus"))
-                .body("job", is("zion resident"));
+                .extract().as(CreateUserResponseModel.class);
+
+
+        assertEquals("morpheus", response.getName());
+        assertEquals("leader", response.getJob());
 
 
     }

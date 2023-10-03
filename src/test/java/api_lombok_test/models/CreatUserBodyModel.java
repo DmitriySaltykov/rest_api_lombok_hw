@@ -3,9 +3,6 @@ package api_lombok_test.models;
 import lombok.Data;
 
 @Data
-public class LoginResponseModel {
-    String token;
-
-
-
+public class CreatUserBodyModel {
+    String name,job;
 }
