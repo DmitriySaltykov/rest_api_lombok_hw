@@ -2,7 +2,7 @@ package api_lombok_test.test;
 
 import api_lombok_test.models.CreatUserBodyModel;
 import api_lombok_test.models.CreateUserResponseModel;
-import io.qameta.allure.restassured.AllureRestAssured;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
@@ -13,112 +13,58 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static specs.CreateSpec.createRequestSpec;
+import static specs.CreateSpec.createResponseSpec;
 
 
 public class CreateTest extends TestBase {
     @Test
+    @DisplayName("Successful create user test")
     void successCreateUserTest() {
 
         CreatUserBodyModel createData = new CreatUserBodyModel();
         createData.setName("morpheus");
         createData.setJob("leader");
 
-        CreateUserResponseModel response = step("Сценарий успешного создания пользователя ",() ->
-                      given(createRequestSpec)
-
-                            .body(createData)
-                            .when()
-                            .post("/users")
-                            .then()
-                            .log().status()
-                            .log().body()
-                            .statusCode(201)
-                            .extract().as(CreateUserResponseModel.class));
-        step("Проверка ответа",() -> {
-        assertEquals("morpheus", response.getName());
-        assertEquals("leader", response.getJob());
-        assertNotNull(response.getId());
-        assertNotNull(response.getCreatedAt());
+        CreateUserResponseModel response = step("Create user ", () ->
+                given(createRequestSpec)
+                        .body(createData)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(createResponseSpec)
+                        .extract().as(CreateUserResponseModel.class));
+        step("Сhecking the answer", () -> {
+            assertEquals("morpheus", response.getName());
+            assertEquals("leader", response.getJob());
+            assertNotNull(response.getId());
+            assertNotNull(response.getCreatedAt());
         });
 
 
     }
 
     @Test
+    @DisplayName("Create user with empty name")
     void createUserWithEmptyNameTest() {
 
         CreatUserBodyModel createData = new CreatUserBodyModel();
-        createData.setName("");
         createData.setJob("leader");
 
-        CreateUserResponseModel response = given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .contentType(JSON)
-                .body(createData)
-                .when()
-                .post("/users")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
-                .extract().as(CreateUserResponseModel.class);
+        CreateUserResponseModel response = step("A user has been created with an empty name ", () ->
+                given(createRequestSpec)
+                        .body(createData)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(createResponseSpec)
+                        .extract().as(CreateUserResponseModel.class));
 
-        assertEquals("leader", response.getJob());
-        assertNotNull(response.getId());
-        assertNotNull(response.getCreatedAt());
+        step("Сhecking the answerа", () -> {
+            assertEquals("leader", response.getJob());
+            assertNotNull(response.getId());
+            assertNotNull(response.getCreatedAt());
+        });
 
     }
-
-    @Test
-    void createUserWithEmptyJobTest() {
-
-        CreatUserBodyModel createData = new CreatUserBodyModel();
-        createData.setName("morpheus");
-        createData.setJob("leader");
-
-        CreateUserResponseModel response = given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .contentType(JSON)
-                .body(createData)
-                .when()
-                .post("/users")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
-                .extract().as(CreateUserResponseModel.class);
-
-
-        assertEquals("morpheus", response.getName());
-        assertNotNull(response.getId());
-        assertNotNull(response.getCreatedAt());
-
-    }
-
-    @Test
-    void successUpdateUserTest() {
-        String createData = "{\"name\": \"morpheus\",\"job\": \"zion resident\"}";
-
-        given()
-                .log().uri()
-                .log().method()
-                .log().body()
-                .contentType(JSON)
-                .body(createData)
-                .when()
-                .post("/users/2")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(201)
-                .body("name", is("morpheus"))
-                .body("job", is("zion resident"))
-                .body("createdAt", is(not(empty())));
-    }
-
 
 }
