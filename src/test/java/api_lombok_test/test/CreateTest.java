@@ -48,7 +48,7 @@ public class CreateTest extends TestBase {
     void createUserWithEmptyNameTest() {
 
         CreatUserBodyModel createData = new CreatUserBodyModel();
-        createData.setJob("leader");
+                createData.setJob("leader");
 
         CreateUserResponseModel response = step("A user has been created with an empty name ", () ->
                 given(createRequestSpec)
@@ -60,7 +60,7 @@ public class CreateTest extends TestBase {
                         .extract().as(CreateUserResponseModel.class));
 
         step("Сhecking the answerа", () -> {
-            assertEquals("leader", response.getJob());
+                       assertEquals("leader", response.getJob());
             assertNotNull(response.getId());
             assertNotNull(response.getCreatedAt());
         });
