@@ -1,6 +1,7 @@
 package api_lombok_test.models;
 
-import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;

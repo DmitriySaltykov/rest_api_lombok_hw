@@ -22,7 +22,7 @@ public class SingleUserTest extends TestBase {
     void getListUser() {
 
 
-                UsersResponseModel response = step("Login user", () ->
+        UsersResponseModel response = step("Login user", () ->
                 given(UserRequestSpec)
                         .when()
                         .get("/users?page=2")
@@ -34,7 +34,7 @@ public class SingleUserTest extends TestBase {
             List<UsersDataResponseModel> data = response.getData();
             assertEquals(6, response.getPerPage());
             assertEquals("Byron", data.get(3).getFirstName());
-            assertEquals("Lawson", data.get(0).getLastName());
+            assertEquals("Fields", data.get(4).getLastName());
             assertEquals(8, response.getData().get(1).getId());
             assertEquals("https://reqres.in/#support-heading", response.getSupport().getUrl());
             assertEquals("To keep ReqRes free, contributions towards server costs are appreciated!", response.getSupport().getText());
