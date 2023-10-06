@@ -1,6 +1,5 @@
 package api_lombok_test.test;
 
-import api_lombok_test.models.LoginResponseModel;
 import api_lombok_test.models.UsersDataResponseModel;
 import api_lombok_test.models.UsersResponseModel;
 import org.junit.jupiter.api.DisplayName;
@@ -11,8 +10,8 @@ import java.util.List;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.UserSpec.UserRequestSpec;
-import static specs.UserSpec.UserResponseSpec;
+import static specs.BaseSpec.*;
+
 
 public class SingleUserTest extends TestBase {
 
@@ -23,7 +22,7 @@ public class SingleUserTest extends TestBase {
 
 
         UsersResponseModel response = step("Login user", () ->
-                given(UserRequestSpec)
+                given(baseRequestSpec)
                         .when()
                         .get("/users?page=2")
                         .then()

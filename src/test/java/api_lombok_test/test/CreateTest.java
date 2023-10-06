@@ -8,12 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static specs.CreateSpec.createRequestSpec;
-import static specs.CreateSpec.createResponseSpec;
+import static specs.BaseSpec.*;
 
 
 public class CreateTest extends TestBase {
@@ -26,7 +23,7 @@ public class CreateTest extends TestBase {
         createData.setJob("leader");
 
         CreateUserResponseModel response = step("Create user ", () ->
-                given(createRequestSpec)
+                given(baseRequestSpec)
                         .body(createData)
                         .when()
                         .post("/users")
@@ -51,7 +48,7 @@ public class CreateTest extends TestBase {
                 createData.setJob("leader");
 
         CreateUserResponseModel response = step("A user has been created with an empty name ", () ->
-                given(createRequestSpec)
+                given(baseRequestSpec)
                         .body(createData)
                         .when()
                         .post("/users")
@@ -59,7 +56,7 @@ public class CreateTest extends TestBase {
                         .spec(createResponseSpec)
                         .extract().as(CreateUserResponseModel.class));
 
-        step("Сhecking the answerа", () -> {
+        step("Сhecking the answer", () -> {
                        assertEquals("leader", response.getJob());
             assertNotNull(response.getId());
             assertNotNull(response.getCreatedAt());

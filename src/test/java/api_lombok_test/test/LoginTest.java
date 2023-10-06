@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.LoginSpec.*;
+import static specs.BaseSpec.*;
+
 
 
 public class LoginTest extends TestBase {
@@ -23,7 +24,7 @@ public class LoginTest extends TestBase {
         authData.setPassword("cityslicka");
 
         LoginResponseModel response = step("Login user", () ->
-                given(loginRequestSpec)
+                given(baseRequestSpec)
                         .body(authData)
                         .when()
                         .post("/login")
@@ -48,12 +49,12 @@ public class LoginTest extends TestBase {
         authData.setPassword("cityslicka");
 
         LoginErrorModel response = step("Login user", () ->
-                given(loginRequestSpec)
+                given(baseRequestSpec)
                         .body(authData)
                         .when()
                         .post("/login")
                         .then()
-                        .spec(loginResponseErrorSpec)
+                        .spec(loginResponse400ErrorSpec)
                         .extract().as(LoginErrorModel.class));
 
         step("Checking the answer", () ->
