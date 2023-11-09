@@ -1,0 +1,18 @@
+{
+  "base": {
+    "logo": "logo.png",
+    "project": "API project",
+    "environment": "DEV",
+    "comment": "The first project with API test",
+    "reportLink": "",
+    "language": "en",
+    "allureFolder": "build/reports/allure-report/allureReport",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "6418994739:AAHMXpQtEKfzP52-dvgoQjzLMzz7MWzSvP0",
+    "chat": "-1001661158578",
+    "replyTo": ""
+
+  }
+}
