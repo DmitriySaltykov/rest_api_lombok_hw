@@ -41,8 +41,8 @@ public class LoginTest extends TestBase {
 
 
     @Test
-    @DisplayName("Unsuccessful login test")
-    void unsuccessfulTest() {
+    @DisplayName("Unsuccessful login test with empty login")
+    void unsuccessfulEmptyLoginTest() {
 
         LoginBodyModel authData = new LoginBodyModel();
 
@@ -59,6 +59,53 @@ public class LoginTest extends TestBase {
 
         step("Checking the answer", () ->
                 assertEquals("Missing email or username", response.getError())
+        );
+
+
+    }
+    @Test
+    @DisplayName("Unsuccessful login test with empty password")
+    void unsuccessfulEmptyPasswordTest() {
+
+        LoginBodyModel authData = new LoginBodyModel();
+
+        authData.setEmail("eve.holt@reqres.in");
+
+        LoginErrorModel response = step("Login user", () ->
+                given(baseRequestSpec)
+                        .body(authData)
+                        .when()
+                        .post("/login")
+                        .then()
+                        .spec(loginResponse400ErrorSpec)
+                        .extract().as(LoginErrorModel.class));
+
+        step("Checking the answer", () ->
+                assertEquals("Missing password", response.getError())
+        );
+
+
+    }
+    @Test
+    @DisplayName("Unsuccessful login test with invalid values")
+    void unsuccessfulTest() {
+
+        LoginBodyModel authData = new LoginBodyModel();
+
+        authData.setEmail("dim@vit.in");
+        authData.setPassword("ratata");
+
+        LoginErrorModel response = step("Login user", () ->
+                given(baseRequestSpec)
+                        .body(authData)
+                        .when()
+                        .post("/login")
+                        .then()
+                        .spec(loginResponse400ErrorSpec)
+                        .extract().as(LoginErrorModel.class));
+
+        step("Checking the answer", () ->
+                assertEquals("user not found", response.getError())
         );
 
 

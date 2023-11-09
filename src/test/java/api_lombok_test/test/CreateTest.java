@@ -41,8 +41,8 @@ public class CreateTest extends TestBase {
     }
 
     @Test
-    @DisplayName("Create user with empty name")
-    void createUserWithEmptyNameTest() {
+    @DisplayName("Create user with empty job")
+    void createUserWithEmptyJobTest() {
 
         CreatUserBodyModel createData = new CreatUserBodyModel();
                 createData.setJob("leader");
@@ -58,6 +58,52 @@ public class CreateTest extends TestBase {
 
         step("Сhecking the answer", () -> {
                        assertEquals("leader", response.getJob());
+            assertNotNull(response.getId());
+            assertNotNull(response.getCreatedAt());
+        });
+
+    }
+    @Test
+    @DisplayName("Create user with empty name")
+    void createUserWithEmptyNameTest() {
+
+        CreatUserBodyModel createData = new CreatUserBodyModel();
+        createData.setName("morpheus");
+
+        CreateUserResponseModel response = step("A user has been created with an empty name ", () ->
+                given(baseRequestSpec)
+                        .body(createData)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(createResponseSpec)
+                        .extract().as(CreateUserResponseModel.class));
+
+        step("Сhecking the answer", () -> {
+            assertEquals("morpheus", response.getName());
+            assertNotNull(response.getId());
+            assertNotNull(response.getCreatedAt());
+        });
+
+    }
+    @Test
+    @DisplayName("Create user with empty name")
+    void uncreateUserTest() {
+
+        CreatUserBodyModel createData = new CreatUserBodyModel();
+
+
+        CreateUserResponseModel response = step("A user has been created with an empty name ", () ->
+                given(baseRequestSpec)
+                        .body(createData)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(createResponseSpec)
+                        .extract().as(CreateUserResponseModel.class));
+
+        step("Сhecking the answer", () -> {
+
             assertNotNull(response.getId());
             assertNotNull(response.getCreatedAt());
         });
