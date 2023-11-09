@@ -116,7 +116,7 @@ gradle clean test
 <a id="интеграция-с-jira"></a>
 
 
-## <img alt="Allure" height="25" src="images/logo/Jira.svg" width="25"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-922">Jira</a>
+## <img alt="Allure" height="25" src="images/logo/Jira.svg" width="25"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-941">Jira</a>
 
 
 <p align="center">  
