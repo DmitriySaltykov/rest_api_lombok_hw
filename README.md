@@ -87,61 +87,61 @@ gradle clean test
 <img title="Allure Graphics2" src="images/screen/AlGraph2.png" width="850">  
 </p>
 
-[//]: # (<a id="интеграция-с-allure-testops"></a>)
+<a id="интеграция-с-allure-testops"></a>
 
-[//]: # ()
-[//]: # (## <img alt="Allure_TO" height="25" src="images/logo/Allure_TO.svg" width="25"/> </a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/project/3737/dashboards">Allure TestOps</a>)
 
-[//]: # ()
-[//]: # (## 🖨️ Основная страница отчёта)
+## <img alt="Allure_TO" height="25" src="images/logo/Allure_TO.svg" width="25"/> </a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/project/3767/dashboards">Allure TestOps</a>
 
-[//]: # ()
-[//]: # (<p align="center">  )
 
-[//]: # (<img title="Allure TestOps Dashboard" src="images/screen/OpsDashboard.png" width="850">  )
+## 🖨️ Основная страница отчёта
 
-[//]: # (</p>  )
 
-[//]: # ()
-[//]: # (## 📄 Автоматизированные тест-кейсы)
+<p align="center">  
 
-[//]: # ()
-[//]: # (<p align="center">  )
+<img title="Allure TestOps Dashboard" src="images/screen/OpsDashboard.png" width="850">  
 
-[//]: # (<img title="Allure Tests" src="images/screen/OpsTestCases.png" width="850">  )
+</p>  
 
-[//]: # (</p>)
 
-[//]: # ()
-[//]: # (<a id="интеграция-с-jira"></a>)
+## 📄 Автоматизированные тест-кейсы
 
-[//]: # ()
-[//]: # (## <img alt="Allure" height="25" src="images/logo/Jira.svg" width="25"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-922">Jira</a>)
 
-[//]: # ()
-[//]: # (<p align="center">  )
+<p align="center">  
 
-[//]: # (<img title="Jira" src="images/screen/JiraMain.png" width="">  )
+<img title="Allure Tests" src="images/screen/OpsTestCases.png" width="850">  
 
-[//]: # (</p>)
+</p>
 
-[//]: # ()
-[//]: # (____)
 
-[//]: # ()
-[//]: # (<a id="уведомление-в-telegram-о-результатах-выполнения-автоматизированных-тестов"></a>)
+<a id="интеграция-с-jira"></a>
 
-[//]: # ()
-[//]: # (## <img alt="Allure" height="25" src="images/logo/Telegram.svg" width="25"/></a> Уведомление в Telegram при помощи бота)
 
-[//]: # ()
-[//]: # (____)
+## <img alt="Allure" height="25" src="images/logo/Jira.svg" width="25"/></a> Интеграция с <a target="_blank" href="https://jira.autotests.cloud/browse/HOMEWORK-922">Jira</a>
 
-[//]: # (<p align="center">  )
 
-[//]: # (<img title="TG Overview" src="images/screen/TGMain.png" width="550">  )
+<p align="center">  
 
-[//]: # (</p>)
+<img title="Jira" src="images/screen/JiraMain.png" width="">  
 
-[//]: # ()
-[//]: # (____)
+</p>
+
+
+____
+
+
+<a id="уведомление-в-telegram-о-результатах-выполнения-автоматизированных-тестов"></a>
+
+
+## <img alt="Allure" height="25" src="images/logo/Telegram.svg" width="25"/></a> Уведомление в Telegram при помощи бота
+
+
+____
+
+<p align="center">  
+
+<img title="TG Overview" src="images/screen/TGMain.png" width="550">  
+
+</p>
+
+
+____
