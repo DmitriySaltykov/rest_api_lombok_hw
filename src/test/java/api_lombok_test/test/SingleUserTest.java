@@ -26,7 +26,7 @@ public class SingleUserTest extends TestBase {
                         .when()
                         .get("/users?page=2")
                         .then()
-                        .spec(UserResponseSpec)
+                        .spec(userResponseSpec)
                         .extract().as(UsersResponseModel.class));
 
         step("Verify response", () -> {

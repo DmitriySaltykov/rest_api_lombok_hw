@@ -42,7 +42,7 @@ public class BaseSpec extends TestBase {
             .expectStatusCode(400)
             .build();
 
-    public static ResponseSpecification UserResponseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification userResponseSpec = new ResponseSpecBuilder()
             .log(STATUS)
             .log(BODY)
             .expectStatusCode(200)
